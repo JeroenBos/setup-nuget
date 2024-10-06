@@ -11,4 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: ./
-      - run: nuget --version
+      - run: |
+          set -e
+          nuget help
