@@ -1,0 +1,34 @@
+name: Install nuget
+
+description: 'Installs the latest version of nuget.exe and installs mono to run nuget.exe'
+
+inputs:
+  path:
+    description: 'Directory to place nuget in'
+    required: false
+    default: '/usr/local/bin'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install mono
+      run: |
+        set -e
+        # Installation instructions copied from https://www.mono-project.com/download/stable/#download-lin:
+        sudo apt install ca-certificates gnupg
+        sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+        echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+        sudo apt update
+        sudo apt install mono-xsp4
+      shell: bash
+
+    - name: Install nuget
+      run: |
+        set -e
+        exe_path="$(mktemp -d)/nuget.exe"
+        wget --no-verbose https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -O "$exe_path"
+        chmod +rx "$exe_path"
+
+        echo "'$exe_path' \$@ &" > '${{ inputs.path }}/nuget'
+        chmod +x '${{ inputs.path }}/nuget'
+      shell: bash
