@@ -1,11 +1,13 @@
 name: Install nuget
+
 description: 'Installs the latest version of nuget.exe and installs mono to run nuget.exe'
+
 inputs:
   path:
     description: 'Directory to place nuget in'
     required: false
     default: '/usr/local/bin'
-outputs:
+
 runs:
   using: "composite"
   steps:
