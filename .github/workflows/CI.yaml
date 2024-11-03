@@ -21,7 +21,7 @@ jobs:
 
       - uses: ./
         with:
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          pat: ${{ secrets.PAT }}
       - run: |
           set -e
           nuget help

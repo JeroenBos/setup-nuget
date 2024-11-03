@@ -12,7 +12,7 @@ inputs:
     description: 'Directory to place nuget in'
     required: false
     default: '/usr/local/bin'
-  gh-token:
+  pat:
     description: 'A token with at least the `package: read` permission'
 
 runs:
@@ -23,7 +23,7 @@ runs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ inputs.gh-token }}
+        password: ${{ inputs.pat }}
 
     - name: Pull image
       id: pull
