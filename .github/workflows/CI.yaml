@@ -20,6 +20,8 @@ jobs:
           workflowName: Deploy
 
       - uses: ./
+        with:
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           set -e
           nuget help
