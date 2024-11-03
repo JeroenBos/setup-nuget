@@ -28,7 +28,7 @@ runs:
     - name: Pull image
       id: pull
       run: |
-        docker pull $"tag"
+        docker pull "$tag"
         echo "tag=$tag" >> $GITHUB_OUTPUT
       env:
         tag: ghcr.io/jeroenbos/nuget:v1
