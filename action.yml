@@ -31,7 +31,7 @@ runs:
         docker pull $"tag"
         echo "tag=$tag" >> $GITHUB_OUTPUT
       env:
-        tag: ghcr.io/jeroenbos/nuget:v0
+        tag: ghcr.io/jeroenbos/nuget:v1
       shell: bash
 
     - name: Install nuget
