@@ -12,6 +12,11 @@ on:
 jobs:
   deploy-new-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+
     steps:
       - uses: actions/checkout@v4
 
