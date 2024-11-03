@@ -8,9 +8,20 @@ on:
 jobs:
   test-nuget-setup:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     steps:
       - uses: actions/checkout@master
+      - name: Wait for new docker image to be deployed
+        uses: deepinsight-io/action-wait-on-workflow@v3
+        if: github.ref_name == 'main'
+        with:
+          workflowName: Deploy
+
       - uses: ./
+        with:
+          gh-pat: ${{ secrets.PAT }}
       - run: |
           set -e
           nuget help
