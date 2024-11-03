@@ -18,7 +18,7 @@ jobs:
       - name: Log in to the GitHub Packages Container registry
         uses: docker/login-action@v3.3.0
         with:
-          registry: JeroenBos/nuget
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -27,5 +27,4 @@ jobs:
         with:
           context: mono
           push: true # 🚧 ${{ github.event.pull_request && false || true }}
-          tags: v0
-          labels: latest
+          tags: jeroenbos/nuget:v0
