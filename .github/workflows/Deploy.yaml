@@ -4,10 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - mono
+      - "mono/**"
   pull_request:
     paths:
-      - mono
+      - "mono/**"
 
 jobs:
   deploy-new-image:
