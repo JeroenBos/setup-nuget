@@ -33,4 +33,4 @@ jobs:
         with:
           context: mono
           push: true # 🚧 ${{ github.event.pull_request && false || true }}
-          tags: jeroenbos/nuget:v0
+          tags: ghcr.io/${{ github.repository_owner }}/nuget:v0
