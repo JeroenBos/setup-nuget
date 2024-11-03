@@ -11,9 +11,13 @@ inputs:
   path:
     description: 'Directory to place nuget in'
     required: false
+    type: string
     default: '/usr/local/bin'
   pat:
-    description: 'A token with at least the `package: read` permission'
+    description: 'A pat with permission to read packages'
+    required: true
+    type: string
+
 
 runs:
   using: "composite"
