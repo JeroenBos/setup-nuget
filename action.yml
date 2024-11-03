@@ -2,19 +2,14 @@ name: Install nuget
 
 description: 'Installs the latest version of nuget.exe and installs mono to run nuget.exe'
 
-# Requires the following permissions:
-# permissions:
-#   contents: read
-#   packages: read
-
 inputs:
   path:
     description: 'Directory to place nuget in'
     required: false
     type: string
     default: '/usr/local/bin'
-  pat:
-    description: 'A pat with permission to read packages'
+  gh-pat:
+    description: 'A GitHub Personal Access Token with permission to read packages'
     required: true
     type: string
 
@@ -27,7 +22,7 @@ runs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ inputs.pat }}
+        password: ${{ inputs.gh-pat }}
 
     - name: Pull image
       id: pull
