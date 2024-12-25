@@ -18,6 +18,7 @@ jobs:
         if: github.ref_name == 'main'
         with:
           workflowName: Deploy
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: ./
         with:
