@@ -17,6 +17,15 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Verify inputs
+      run: |
+        pat="${{ inputs.gh-pat }}"
+        if [[ -z "${pat}" ]]; then
+          echo "Argument 'gh-pat' is mandatory"
+          exit 1
+        fi
+      shell: bash
+
     - name: Log in to the GitHub Packages Container registry
       uses: docker/login-action@v3.3.0
       with:
@@ -33,8 +42,8 @@ runs:
         tag: ghcr.io/jeroenbos/nuget:v1
       shell: bash
 
-    - name: Install nuget
-      run: |
+    - run: |
+        # install nuget
         set -e
         echo "docker run '${{ steps.pull.outputs.tag }}' nuget \$@" > '${{ inputs.path }}/nuget'
         chmod +x '${{ inputs.path }}/nuget'
