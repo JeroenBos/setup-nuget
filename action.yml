@@ -20,6 +20,7 @@ runs:
     - name: Verify inputs
       run: |
         [[ -z "${{ inputs.gh-pat }}" ]] && echo "Argument 'gh-pat' is mandatory" && exit 1
+      shell: bash
 
     - name: Log in to the GitHub Packages Container registry
       uses: docker/login-action@v3.3.0
