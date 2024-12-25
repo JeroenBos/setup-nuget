@@ -19,6 +19,8 @@ runs:
   steps:
     - name: Verify inputs
       run: |
+        input="${{ inputs.gh-pat }}"
+        echo ${#input}
         [[ -z "${{ inputs.gh-pat }}" ]] && echo "Argument 'gh-pat' is mandatory" && exit 1
       shell: bash
 
@@ -38,8 +40,8 @@ runs:
         tag: ghcr.io/jeroenbos/nuget:v1
       shell: bash
 
-    - name: Install nuget
-      run: |
+    - run: |
+        # install nuget
         set -e
         echo "docker run '${{ steps.pull.outputs.tag }}' nuget \$@" > '${{ inputs.path }}/nuget'
         chmod +x '${{ inputs.path }}/nuget'
