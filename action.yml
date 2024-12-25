@@ -19,9 +19,8 @@ runs:
   steps:
     - name: Verify inputs
       run: |
-        input="${{ inputs.gh-pat }}"
-        echo ${#input}
-        [[ -z "${{ inputs.gh-pat }}" ]] && echo "Argument 'gh-pat' is mandatory" && exit 1
+        pat="${{ inputs.gh-pat }}"
+        [[ -z "${pat}" ]] && echo "Argument 'gh-pat' is mandatory" && exit 1
       shell: bash
 
     - name: Log in to the GitHub Packages Container registry
