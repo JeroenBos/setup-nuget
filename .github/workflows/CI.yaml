@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Wait for new docker image to be deployed
         uses: deepinsight-io/action-wait-on-workflow@v3
-        # if: github.ref_name == 'main' 🚧
+        if: github.ref_name == 'main'
         with:
           workflowName: Deploy
           token: ${{ secrets.GITHUB_TOKEN }}
